@@ -25,4 +25,14 @@
         }
 
     }, 1000 * 60);
+
+    setInterval(() => {
+        const rand = Math.random();
+
+        if (rand < 0.5) {
+            document.body.scrollTop;
+        } else {
+            document.body.click();
+        }
+    }, 3000);
 })();
