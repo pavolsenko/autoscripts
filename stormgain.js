@@ -9,6 +9,8 @@
 // @grant        none
 // ==/UserScript==
 
+/* global $ */
+
 (function() {
     'use strict';
 
