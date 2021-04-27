@@ -4,7 +4,7 @@
 // @version      0.1
 // @description  try to take over the world!
 // @author       You
-// @match        https://app.stormgain.com/crypto-miner/
+// @match        https://app.stormgain.com/*
 // @icon         https://www.google.com/s2/favicons?domain=stormgain.com
 // @grant        none
 // ==/UserScript==
@@ -13,6 +13,13 @@
 
 (function() {
     'use strict';
+
+    if (window.location.href === 'https://app.stormgain.com/crypto-miner/') {
+        setTimeout(() => {window.location.href = 'https://app.stormgain.com/'}, 1000 * 60 * 15);
+    } else {
+        setTimeout(() => {window.location.href = 'https://app.stormgain.com/crypto-miner'}, 1000 * 60 * 5);
+        return;
+    }
 
     setInterval(() => {
         const buttons = $('button');
@@ -35,6 +42,4 @@
             document.body.click();
         }
     }, 3000);
-    
-    setTimeout(() => window.location.reload(), 1000 * 60 * 15);
 })();
