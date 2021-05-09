@@ -24,12 +24,6 @@ const spinPromise = () => new Promise((resolve, reject) => {
 });
 
 const clickPromise = () => new Promise((resolve, reject) => {
-    if ($('.wheel-count').length > 0) {
-        console.log('wheel count running. waiting...');
-        resolve();
-        return;
-    }
-
     $('.section-win button').click();
     console.log('clicking collect button');
     resolve();
@@ -41,7 +35,7 @@ const waitPromise = (ms) => new Promise((resolve, reject) => {
 });
 
 const run = () => {
-    waitPromise(2000)
+    waitPromise(10000)
         .then(spinPromise)
         .then(() => waitPromise(11000))
         .then(clickPromise)
