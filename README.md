@@ -1,4 +1,4 @@
-# autoscripts
+# Crypto scripts
 
 Couple of scripts you can run in greasemonkey or tampermonkey to get some free crypto from crypto faucets...
 
