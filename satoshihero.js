@@ -1,11 +1,11 @@
 // ==UserScript==
-// @name         Satoshi Hero
+// @name         Satoshi Monster
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
 // @author       You
-// @match        https://satoshihero.com/en/game
-// @icon         https://www.google.com/s2/favicons?domain=satoshihero.com
+// @match        https://*.com/en/game
+// @icon         https://www.google.com/s2/favicons?domain=satoshimonster.com
 // @grant        none
 // ==/UserScript==
 
@@ -66,4 +66,7 @@ const run = () => {
     console.log('starting...');
     run();
     setInterval(run, 1000 * 60 * 31);
+
+    console.log('reload set up ');
+    setInterval(() => window.location.reaload(), 1000 * 60 * 125);
 })();
