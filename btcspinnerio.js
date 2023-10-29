@@ -11,36 +11,35 @@
 
 /* global $ */
 
-const SPIN_IN_PROGRESS = 'aa4fa778cd94c323ac9a0de09f6a4a5b';
+const WHEEl_IN_PROGRESS = 'aa4fa778cd94c323ac9a0de09f6a4a5b';
 const WAIT_REFILL = 'aa938ba8199015c9ac718748fd553b9f';
 
-const spin = () => {
-    if (localStorage.getItem(SPIN_IN_PROGRESS) === '1') {
+const waitPromise = () => new Promise((resolve) => {
+    setTimeout(() => resolve(), 7000);
+});
+
+const wheel = () => {
+    if (localStorage.getItem(WHEEl_IN_PROGRESS) === '1') {
         return;
     }
 
-    const spinPromise = () => new Promise((resolve, reject) => {
-        localStorage.setItem(SPIN_IN_PROGRESS, '1');
+    const spinPromise = () => new Promise((resolve) => {
+        localStorage.setItem(WHEEl_IN_PROGRESS, '1');
         $("button:contains('Spin')").first().click();
         resolve();
     });
 
-    const waitPromise = () => new Promise((resolve, reject) => {
-        setTimeout(() => resolve(), 7000);
-    });
-
-    const actionPromise = () => new Promise((resolve, reject) => {
+    const actionPromise = () => new Promise((resolve) => {
         if ($("h2:contains('You won')").length > 0) {
             $('.swal2-confirm').click();
             resolve();
-            return;
         } else if ($("h2:contains('One chest contains:')").length > 0) {
-            $('.btn-dark').get(Math.floor(Math.random() * $('.btn-dark').length)).click();
+            const buttonDark = $('.btn-dark');
+            buttonDark.get(Math.floor(Math.random() * buttonDark.length)).click();
             setTimeout(() => {
                 $('.swal2-confirm').click();
                 resolve();
             }, 1000);
-            return;
         } else if($("h2:contains('Scratch and Win')").length > 0) {
             $("button:contains('Scratch All')").first().click();
             setTimeout(() => {
@@ -48,13 +47,12 @@ const spin = () => {
             }, 2000);
         } else {
             resolve();
-            return;
         }
     });
 
-    const finishPromise = () => new Promise((resolve, reject) => {
+    const finishPromise = () => new Promise((resolve) => {
         setTimeout(() => {
-            localStorage.setItem(SPIN_IN_PROGRESS, '0');
+            localStorage.setItem(WHEEl_IN_PROGRESS, '0');
             resolve();
         }, 1000);
     });
@@ -69,24 +67,25 @@ const refill = () => {
 
     localStorage.setItem(WAIT_REFILL, '1');
 
-    const refillInterval = setInterval(() => {
-        if ($('#faucet').length === 0) {
+    setInterval(() => {
+        const faucet = $('#faucet');
+        if (faucet.length === 0) {
             console.log('no refill button present. waiting...');
             return;
         }
 
         if (parseInt($('h4').first().text(), 10) > 0) {
-            window.location.href = 'https://btcspinner.io/spinner';
+            window.location.href = 'https://btcspinner.io/wheel';
             return;
         }
 
         console.log('refilling...');
         localStorage.setItem(WAIT_REFILL, '0');
-        setTimeout(() => $('#faucet').first().click(), 1000);
+        setTimeout(() => faucet.first().click(), 1000);
     }, 1000 * 60);
 
     const randomReloadTime = 1000 * 60 * Math.ceil(Math.random() * 10);
-    console.log('awaiting refill... next random reaload in ' + randomReloadTime / 1000 + 's');
+    console.log('awaiting refill... next random reload in ' + randomReloadTime / 1000 + 's');
 
     setTimeout(() => {
         localStorage.setItem(WAIT_REFILL, '0');
@@ -102,26 +101,25 @@ const start = () => {
         return;
     }
 
-    if (spinsRemaining > 0 && window.location.href !== 'https://btcspinner.io/spinner') {
-        window.location.href = 'https://btcspinner.io/spinner';
+    if (spinsRemaining > 0 && window.location.href !== 'https://btcspinner.io/wheel') {
+        window.location.href = 'https://btcspinner.io/wheel';
         return;
     }
 
-    if (window.location.href === 'https://btcspinner.io/spinner') {
-        spin();
+    if (window.location.href === 'https://btcspinner.io/wheel') {
+        wheel();
         return;
     }
 
     if (window.location.href === 'https://btcspinner.io/store') {
         refill();
-        return;
     }
 }
 
 (function() {
     'use strict';
 
-    localStorage.setItem(SPIN_IN_PROGRESS, '0');
+    localStorage.setItem(WHEEl_IN_PROGRESS, '0');
     localStorage.setItem(WAIT_REFILL, '0');
 
     setInterval(start, 2000);
