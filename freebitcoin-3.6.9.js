@@ -98,7 +98,7 @@ var WAIT_PLAY_AFTER_LOSSES = 1; // Just with STRATEGY=2; Check guides.
 var SPEED = 3;      //Speed of multiply betting in manual mode, 3 fast, 2 medium, 1 human, 0 slowest
  
 // *** CAPTCHA PLAY *** ///
-var PLAY_WITHOUT_CAPTCHA = false; // Spend RP instead to solve Captchas
+var PLAY_WITHOUT_CAPTCHA = true; // Spend RP instead to solve Captchas
  
 // ** Logging
 var LOGGING = 5; //0 is no messages, 5 is debug
