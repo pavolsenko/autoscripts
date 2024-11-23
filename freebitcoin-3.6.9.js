@@ -51,9 +51,9 @@
 // ** BEHAVIOR ** //
 var ROLL = true;       // Auto Roll enable or disable. **** If Disabled, Multiply will NOT be executed ***. Override nexts.
 var PROMO_MODE = false; // play faster when some promo (bonus RP or 1000% is active, or not. Override nexts.
-var GHOST_MODE = true; // *NEW* Don't play in the night if no promo actives. Override nexts.
-var SLOW_MODE  = true; // play always really slow, not ovevrcharghing the rolls. Override nexts.
-var NIGHT_MODE = true; // play slower when it's night time
+var GHOST_MODE = false; // *NEW* Don't play in the night if no promo actives. Override nexts.
+var SLOW_MODE  = false; // play always really slow, not ovevrcharghing the rolls. Override nexts.
+var NIGHT_MODE = false; // play slower when it's night time
  
 // *** Bonuses
 // It buys bonuses just when missing less then 20 minutes to the Roll. To avoid losing 1 bonus Roll. 
@@ -101,7 +101,7 @@ var SPEED = 3;      //Speed of multiply betting in manual mode, 3 fast, 2 medium
 var PLAY_WITHOUT_CAPTCHA = true; // Spend RP instead to solve Captchas
  
 // ** Logging
-var LOGGING = 5; //0 is no messages, 5 is debug
+var LOGGING = 0; //0 is no messages, 5 is debug
  
 // ** SEND STATS and multiply CONFIG 
 var SEND_STATS = false;
